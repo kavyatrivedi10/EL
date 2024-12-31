@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Mentor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .interview-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+        }
+        .user-message {
+            background-color: #d1f7c4;
+            text-align: right;
+        }
+        .ai-message {
+            background-color: #e3e3e3;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .input-group input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .input-group button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .input-group button:hover {
+            background-color: #45a049;
+        }
+        .feedback {
+            margin-top: 20px;
+            background-color: #ff9800;
+            padding: 10px;
+            border-radius: 4px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="interview-container">
+        <h2>AI Interview Mentor</h2>
+        <div class="chat-box" id="chat-box">
+            <div class="message ai-message">Hello! Let's start your mock interview. Tell me about yourself.</div>
+        </div>
+        <div class="input-group">
+            <input type="text" id="user-input" placeholder="Type your answer..." />
+            <button onclick="submitAnswer()">Submit</button>
+        </div>
+        <div id="feedback" class="feedback" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Predefined interview questions and feedback
+        const interviewQuestions = [
+            { question: "Tell me about yourself.", feedback: "Your answer should highlight your skills, experiences, and what drives you." },
+            { question: "Why do you want to work with us?", feedback: "You should demonstrate your interest in the company and how it aligns with your career goals." },
+            { question: "What are your strengths?", feedback: "Be specific and provide examples of how your strengths have helped you succeed." },
+            { question: "What is your greatest weakness?", feedback: "Be honest, but also talk about how you are improving your weakness." },
+            { question: "Where do you see yourself in 5 years?", feedback: "Discuss your career goals and how they align with the company's values and growth." }
+        ];
+        
+        let currentQuestionIndex = 0;
+
+        // Function to append messages to the chat box
+        function appendMessage(content, sender) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
+            messageDiv.innerText = content;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom
+        }
+
+        // Function to handle answer submission
+        function submitAnswer() {
+            const userInput = document.getElementById('user-input').value.trim();
+            const feedbackBox = document.getElementById('feedback');
+
+            // If user input is empty, don't process
+            if (userInput === '') return;
+
+            // Display the user's answer
+            appendMessage(userInput, 'user');
+
+            // Provide feedback for the answer
+            feedbackBox.style.display = 'block';
+            feedbackBox.innerText = interviewQuestions[currentQuestionIndex].feedback;
+
+            // Clear input field
+            document.getElementById('user-input').value = '';
+
+            // If there are more questions, ask the next question
+            if (currentQuestionIndex < interviewQuestions.length - 1) {
+                setTimeout(() => {
+                    appendMessage(interviewQuestions[currentQuestionIndex + 1].question, 'ai');
+                    currentQuestionIndex++;
+                }, 2000);
+            } else {
+                setTimeout(() => {
+                    appendMessage("That's the end of the interview. Thank you for your time!", 'ai');
+                }, 2000);
+            }
+        }
+
+        // Initial question prompt
+        appendMessage(interviewQuestions[currentQuestionIndex].question, 'ai');
+        currentQuestionIndex++;
+    </script>
+
+</body>
+</html>

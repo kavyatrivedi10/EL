@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            max-width: 90%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-photo img {
+            border-radius: 50%;
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+            border: 3px solid #4CAF50;
+        }
+        .hidden-input {
+            display: none;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #f4f4f4;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .progress-bar {
+            height: 20px;
+            border-radius: 4px;
+        }
+        .progress-bar-label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .button {
+            text-align: center;
+        }
+        .button a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+        }
+        .button a:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>User Profile</h2>
+
+        <!-- Profile Photo Section -->
+        <div class="profile-photo">
+            <img id="profile-photo" src="https://via.placeholder.com/100" alt="Profile Photo" title="Click to update photo">
+            <input type="file" id="upload-photo" class="hidden-input" accept="image/*">
+        </div>
+
+        <!-- Profile Info Section with Edit Form -->
+        <form id="profile-form" action="/submit-profile" method="POST" enctype="multipart/form-data">
+            <div class="profile-info">
+                <h3>Personal Information</h3>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" value="JohnDoe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="john.doe@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="date-joined">Date Joined:</label>
+                    <input type="text" id="date-joined" name="date_joined" value="January 1, 2023" disabled>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress">
+                <h3>Progress</h3>
+                <!-- Job Application Progress -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 60%; background-color: #4CAF50;"></div>
+                </div>
+                <p class="progress-bar-label">Job Application Progress: 60%</p>
+
+                <!-- Interview Preparation Progress -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 45%; background-color: #ff9800;"></div>
+                </div>
+                <p class="progress-bar-label">Interview Preparation Progress: 45%</p>
+
+                <!-- Skill Development Progress -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 80%; background-color: #2196F3;"></div>
+                </div>
+                <p class="progress-bar-label">Skill Development Progress: 80%</p>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="button">
+                <input type="submit" value="Save Changes">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const profilePhoto = document.getElementById('profile-photo');
+        const fileInput = document.getElementById('upload-photo');
+
+        // Trigger file input on profile photo click
+        profilePhoto.addEventListener('click', function() {
+            fileInput.click();  // This opens the file selection dialog
+        });
+
+        // Handle file selection and update the profile photo
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePhoto.src = e.target.result;  // Update profile photo with selected image
+                };
+                reader.readAsDataURL(this.files[0]);  // Read the selected file as a data URL
+            }
+        });
+    </script>
+
+</body>
+</html>

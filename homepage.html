@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview App Homepage</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background-color: #007bff;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .welcome-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .welcome-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .features-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .features-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .feature-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 16px;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">InterviewApp</div>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Interview</a>
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <h1>Welcome to InterviewApp</h1>
+        <p>Your personal assistant for interview preparation.</p>
+        <button class="cta-button">Start Your Interview</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2>Features</h2>
+        <p>Our app offers a variety of features to help you succeed in your next interview:</p>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <h3>Question Practice</h3>
+                <p>Prepare with real-world interview questions and answers.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Real-time Feedback</h3>
+                <p>Get feedback on your responses to improve your answers.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Mock Interviews</h3>
+                <p>Simulate real interview scenarios with a chatbot or real person.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Contact Us: <a href="mailto:support@interviewapp.com">support@interviewapp.com</a></p>
+        <p>&copy; 2024 InterviewApp. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

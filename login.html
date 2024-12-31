@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup / Forgot Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .form-group a {
+            text-align: center;
+            display: block;
+            font-size: 14px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none;
+        }
+        .nav-links {
+            text-align: center;
+        }
+        .nav-links a {
+            margin: 0 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="form-title">Login</h2>
+
+        <!-- Login Form -->
+        <form id="login-form" action="/submit-login" method="POST">
+            <div class="form-group">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+            <div class="form-group nav-links">
+                <a href="javascript:void(0)" onclick="showForgotPassword()">Forgot Password?</a>
+                <a href="javascript:void(0)" onclick="showSignupForm()">Don't have an account? Sign Up</a>
+            </div>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="hidden" action="/submit-signup" method="POST">
+            <div class="form-group">
+                <label for="signup-username">Username:</label>
+                <input type="text" id="signup-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign Up">
+            </div>
+            <div class="form-group nav-links">
+                <a href="javascript:void(0)" onclick="showLoginForm()">Already have an account? Login</a>
+            </div>
+        </form>
+
+        <!-- Forgot Password Form -->
+        <form id="forgot-password-form" class="hidden" action="/reset-password" method="POST">
+            <div class="form-group">
+                <label for="forgot-email">Enter your Email:</label>
+                <input type="email" id="forgot-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Reset Password">
+            </div>
+            <div class="form-group nav-links">
+                <a href="javascript:void(0)" onclick="showLoginForm()">Back to Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Show Login Form
+        function showLoginForm() {
+            document.getElementById('form-title').innerText = 'Login';
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('forgot-password-form').classList.add('hidden');
+        }
+
+        // Show Signup Form
+        function showSignupForm() {
+            document.getElementById('form-title').innerText = 'Sign Up';
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.remove('hidden');
+            document.getElementById('forgot-password-form').classList.add('hidden');
+        }
+
+        // Show Forgot Password Form
+        function showForgotPassword() {
+            document.getElementById('form-title').innerText = 'Forgot Password';
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('forgot-password-form').classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
